@@ -73,7 +73,6 @@ public class TelaCadClientes extends TelaDeCadastro {
 		});
 
 		this.btnCancelar.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				TelaCadClientes.this.cancelar();
 
@@ -142,13 +141,18 @@ public class TelaCadClientes extends TelaDeCadastro {
 				clienteJdbcDAO.salvar(this.cliente);
 			} else {
 				this.cliente.setId_cliente(idInt);
-				ClienteJdbcDAO.alterar(this.cliente);
+				clienteJdbcDAO.alterar(this.cliente);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	@Override 
+	void cancelar() {
+		this.setVisible(false);
+	}
+	
 	@Override
 	void alterar() throws SQLException {
 		String id = this.txtId.getText();
@@ -156,7 +160,7 @@ public class TelaCadClientes extends TelaDeCadastro {
 			int idInt = Integer.parseInt(id);
 			Connection conn = JdbcUtil.getConnection();
 			ClienteJdbcDAO clienteJdbcDAO = new ClienteJdbcDAO(conn);
-			Cliente cli = ClienteJdbcDAO.findById(idInt);
+			Cliente cli = clienteJdbcDAO.findById(idInt);
 			if (cli != null) {
 				this.txtNome.setText(cli.getNome());
 				this.txtEndereco.setText(cli.getEndereco());
@@ -177,7 +181,7 @@ public class TelaCadClientes extends TelaDeCadastro {
 			int idInt = Integer.parseInt(id);
 			Connection conn = JdbcUtil.getConnection();
 			ClienteJdbcDAO clienteJdbcDAO = new ClienteJdbcDAO(conn);
-			ClienteJdbcDAO.excluir(idInt);
+			clienteJdbcDAO.excluir(idInt);
 			this.limparFormulario();
 		} catch (Exception e) {
 			e.printStackTrace();
