@@ -23,7 +23,7 @@ public class TelaCadDeVendas extends TelaDeCadastro{
 	JTextField txtIdCliente = new JTextField();
 	
 	JLabel lbIdVenda = new JLabel("ID Venda");
-	JTextField txtIdVenda = new JTextField();
+	JTextField txtIdVenda = new JTextField(); 
 	
 	JLabel lbData = new JLabel("Data");
 	JTextField txtData = new JTextField();
