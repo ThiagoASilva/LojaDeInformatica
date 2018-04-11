@@ -52,6 +52,22 @@ public class App extends JFrame
 			}
 		});
 		menuCadastros.add(menuItemClientes);
+		
+		JMenuItem menuItemHardware = new JMenuItem("Hadware");
+		menuItemHardware.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				App.this.tlaCadCli.setVisible(false);
+				App.this.tlaCadVdas.setVisible(false);
+				App.this.tlaCadHard.setVisible(true);
+				App.this.getContentPane().add(App.this.tlaCadHard, BorderLayout.CENTER);
+				App.this.pack();
+			}
+		});
+		
+		menuCadastros.add(menuItemHardware);
+		
+		JMenuItem menuUtemvenda = new JMenuItem("Vendas");
 	}	
     public static void main( String[] args )
     {
