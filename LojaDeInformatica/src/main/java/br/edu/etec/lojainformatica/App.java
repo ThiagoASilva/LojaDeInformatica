@@ -67,10 +67,25 @@ public class App extends JFrame
 		
 		menuCadastros.add(menuItemHardware);
 		
-		JMenuItem menuUtemvenda = new JMenuItem("Vendas");
+		JMenuItem menuItemvenda = new JMenuItem("Vendas");
+		menuItemvenda.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				App.this.tlaCadCli.setVisible(false);
+				App.this.tlaCadHard.setVisible(false);
+				App.this.tlaCadVdas.setVisible(true);
+				App.this.getContentPane().add(App.this.tlaCadVdas, BorderLayout.CENTER);
+				App.this.pack();
+			}
+		});
+		
+		menuCadastros.add(menuItemvenda);
+		
+		this.menuBar.add(menuCadastros);
+		this.getContentPane().add(menuBar, BorderLayout.NORTH);
 	}	
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+       App app = new App();
     }
 }
