@@ -84,8 +84,8 @@ public class App extends JFrame
 		this.menuBar.add(menuCadastros);
 		this.getContentPane().add(menuBar, BorderLayout.NORTH);
 	}	
-    public static void main( String[] args )
-    {
+	
+    public static void main( String[] args ){
        App app = new App();
     }
 }
