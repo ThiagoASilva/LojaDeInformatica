@@ -25,7 +25,7 @@ public class VendasJdbcDAO {
 		String sql = "insert into tb_vendas (id_cliente, data, vlr_total, desconto, vlr_pago) values ('" +v.getId_cliente()+"','"+dataFormatada+"','"+v.getVlr_total()+"','"+v.getDesconto()+"','"+v.getVlr_pago()+"')";
 		System.out.println(sql);
 		PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-		preparedStatement.executeQuery();
+		preparedStatement.executeUpdate();
 		preparedStatement.close();
 	}
 	
@@ -33,7 +33,7 @@ public class VendasJdbcDAO {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String dataFormatada = sdf.format(vExample.getData());
 		System.out.println(dataFormatada);
-		String sql = "update tb_vendas set data='"+dataFormatada+"'',vlr_total="+vExample.getVlr_total()+",desconto="+vExample.getDesconto()+", vlr_pago="+vExample.getVlr_pago()+" where id_venda='"+vExample.getId_venda()+"';";
+		String sql = "update tb_vendas set data='"+dataFormatada+"',vlr_total="+vExample.getVlr_total()+",desconto="+vExample.getDesconto()+", vlr_pago="+vExample.getVlr_pago()+" where id_venda='"+vExample.getId_venda()+"';";
 		System.out.println(sql);
 		PreparedStatement preparedStatement;
 		try {

@@ -190,10 +190,13 @@ public class TelaCadDeVendas extends TelaDeCadastro{
 			VendasJdbcDAO vendasJdbcDAO = new VendasJdbcDAO(conn);
 			Vendas vda = vendasJdbcDAO.findById(idInt);
 			System.out.println("void alterar() throws SQLException {...." +vda);
+			
 			if(vda != null) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				String dataFormatada = sdf.format(vda.getData());
 				this.txtIdVenda.setText(vda.getId_venda().toString());
-				this.txtIdCliente.setText(vda.getId_cliente().toString());;
-				this.txtData.setText(vda.getData().toString());
+				this.txtIdCliente.setText(vda.getId_cliente().toString());
+				this.txtData.setText(dataFormatada.toString().replaceAll("-", "/"));
 				this.txtValorTotal.setText(vda.getVlr_total().toString());
 				this.txtDesc.setText(vda.getDesconto().toString());
 				this.txtPago.setText(vda.getVlr_pago().toString());
