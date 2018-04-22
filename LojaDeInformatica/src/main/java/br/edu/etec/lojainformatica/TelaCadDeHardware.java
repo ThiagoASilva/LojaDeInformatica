@@ -19,32 +19,32 @@ public class TelaCadDeHardware extends TelaDeCadastro{
 	Hardware hardware = new Hardware();
 	
 	JLabel lb1 = new JLabel("Descrição");
-	JTextField txtDecricao = new JTextField();
+	JTextField txbDecricao = new JTextField();
 	
 	JLabel lb2 = new JLabel("Preço unitário");
-	JTextField txtPrecoUnit = new JTextField();
+	JTextField txbPrecoUnit = new JTextField();
 	
 	JLabel lb3 = new JLabel("Quantidade atual");
-	JTextField txtQtdeAtual = new JTextField();
+	JTextField txbQtdeAtual = new JTextField();
 	
 	JLabel lb4 = new JLabel("Quantidade minima");
-	JTextField txtQtdeMinima = new JTextField();	
+	JTextField txbQtdeMinima = new JTextField();	
 	
 	public TelaCadDeHardware() {
 		super(4, 2);//quatro linhas e duas colunas
 		//Na hora de add os componentes, considerar a ordem deles
 		//conforme usamos abaixo
 		this.painelParaCampos.add(lb1);
-		this.painelParaCampos.add(txtDecricao);
+		this.painelParaCampos.add(txbDecricao);
 		
 		this.painelParaCampos.add(lb2);
-		this.painelParaCampos.add(txtPrecoUnit);
+		this.painelParaCampos.add(txbPrecoUnit);
 		
 		this.painelParaCampos.add(lb3);
-		this.painelParaCampos.add(txtQtdeAtual);
+		this.painelParaCampos.add(txbQtdeAtual);
 		
 		this.painelParaCampos.add(lb4);
-		this.painelParaCampos.add(txtQtdeMinima);
+		this.painelParaCampos.add(txbQtdeMinima);
 		
 		this.btnLimpar.addActionListener(new ActionListener() {
 			
@@ -102,10 +102,10 @@ public class TelaCadDeHardware extends TelaDeCadastro{
 	@Override
 	void limparFormulario(){
 		System.out.println("void limparFormulario(){....");
-		this.lb1.setText("");
-		this.lb2.setText("");
-		this.lb3.setText("");
-		this.lb4.setText("");
+		this.txbDecricao.setText("");
+		this.txbPrecoUnit.setText("");
+		this.txbQtdeAtual.setText("");
+		this.txbQtdeMinima.setText("");
 		
 	}
 
@@ -125,10 +125,10 @@ public class TelaCadDeHardware extends TelaDeCadastro{
 		}
 		
 		try {
-			this.hardware.setDescricao(this.txtDecricao.getText());
-			this.hardware.setPreco_unit(Double.parseDouble(this.txtPrecoUnit.getText()));
-			this.hardware.setQtde_atual(Integer.parseInt(this.txtQtdeAtual.getText()));
-			this.hardware.setQtde_minima(Integer.parseInt(this.txtQtdeMinima.getText()));
+			this.hardware.setDescricao(this.txbDecricao.getText());
+			this.hardware.setPreco_unit(Double.parseDouble(this.txbPrecoUnit.getText().replaceAll(",", ".")));
+			this.hardware.setQtde_atual(Integer.parseInt(this.txbQtdeAtual.getText()));
+			this.hardware.setQtde_minima(Integer.parseInt(this.txbQtdeMinima.getText()));
 			
 			Connection connection = JdbcUtil.getConnection();
 			HardwareJdbcDAO hardwareJdbcDAO = new HardwareJdbcDAO(connection);
@@ -160,10 +160,10 @@ public class TelaCadDeHardware extends TelaDeCadastro{
 			
 			Hardware hard = hardwareJdbcDAO.findById(idInt);
 			if(hard != null) {
-					this.txtDecricao.setText(hard.getDescricao());
-					this.txtPrecoUnit.setText(hard.getPreco_unit()+"");
-					this.txtQtdeAtual.setText(hard.getQtde_atual()+"");
-					this.txtQtdeMinima.setText(hard.getQtde_minima()+"");
+					this.txbDecricao.setText(hard.getDescricao());
+					this.txbPrecoUnit.setText(hard.getPreco_unit()+"");
+					this.txbQtdeAtual.setText(hard.getQtde_atual()+"");
+					this.txbQtdeMinima.setText(hard.getQtde_minima()+"");
 			}else {
 				JOptionPane.showMessageDialog(this, "Nao ha hardwares com esse id");
 			}

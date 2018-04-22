@@ -18,7 +18,7 @@ public class HardwareJdbcDAO {
 	}
 	
 	public void salvar(Hardware h) throws SQLException {
-		String sql = "insert into tb_hardware values ('" + h.getDescricao()+"','"+h.getPreco_unit()+"','"+h.getQtde_atual()+"','" +h.getQtde_minima()+"')";
+		String sql = "insert into tb_hardware (descricao, preco_unit, qtde_atual, qtde_minima) values ('" + h.getDescricao()+"','"+h.getPreco_unit()+"','"+h.getQtde_atual()+"','" +h.getQtde_minima()+"')";
 		System.out.println(sql);
 		PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 		preparedStatement.executeUpdate();
@@ -26,7 +26,7 @@ public class HardwareJdbcDAO {
 		}
 	
 	public void alterar(Hardware hExample) {
-		String sql = "update tb_hardware set descricao='"+hExample.getDescricao()+"',preco_unit'"+hExample.getPreco_unit()+"',qtde_atual='"+hExample.getQtde_atual()+"',qtde_minima='"+hExample.getQtde_minima()+"' where id_hardware='"+hExample.getId_hardware()+"';";
+		String sql = "update tb_hardware set descricao='"+hExample.getDescricao()+"',preco_unit='"+hExample.getPreco_unit()+"',qtde_atual='"+hExample.getQtde_atual()+"',qtde_minima='"+hExample.getQtde_minima()+"' where id_hardware='"+hExample.getId_hardware()+"';";
 		System.out.println(sql);
 		PreparedStatement preparedStatement;
 		try {
@@ -79,7 +79,7 @@ public class HardwareJdbcDAO {
 	}
 	
 	public Hardware findById(Integer id) {
-		String sql = "select #from tb_harware where id_harware = "+id;
+		String sql = "select * from tb_hardware where id_hardware='"+id + "';";
 		System.out.println(sql);
 		Hardware hard = null;
 		try {

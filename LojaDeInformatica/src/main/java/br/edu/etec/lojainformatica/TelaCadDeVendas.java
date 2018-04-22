@@ -28,7 +28,7 @@ public class TelaCadDeVendas extends TelaDeCadastro{
 	JLabel lbData = new JLabel("Data");
 	JTextField txtData = new JTextField();
 	
-	JLabel lbValorTotal = new JLabel("Valor toal");
+	JLabel lbValorTotal = new JLabel("Valor total");
 	JTextField txtValorTotal = new JTextField();
 	
 	JLabel lbDesc = new JLabel("Desconto");
@@ -152,7 +152,7 @@ public class TelaCadDeVendas extends TelaDeCadastro{
 			this.vendas.setId_venda(Integer.parseInt(this.txtIdVenda.getText()));
 			this.vendas.setId_cliente(Integer.parseInt(this.txtIdCliente.getText()));
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-			java.util.Date data = sdf.parse(this.txtData.getText());
+			java.util.Date data = sdf.parse(this.txtData.getText().replaceAll("/", "-"));
 			this.vendas.setData(data);
 			this.vendas.setVlr_total(Double.parseDouble(this.txtValorTotal.getText()));
 			this.vendas.setDesconto(Double.parseDouble(this.txtDesc.getText()));

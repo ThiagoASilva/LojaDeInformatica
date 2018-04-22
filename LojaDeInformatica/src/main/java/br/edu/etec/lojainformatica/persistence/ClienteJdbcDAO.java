@@ -20,7 +20,7 @@ public class ClienteJdbcDAO {
 	}
 	
 	public void salvar(Cliente c) throws SQLException{
-		String sql = "insert into tb_clientes values ('" + c.getNome() + "','" + c.getEndereco() + "','" + c.getFone() + "','"+c.getEmail() + "')";
+		String sql = "insert into tb_clientes (nome, endereco, fone, email) values ('" + c.getNome() + "','" + c.getEndereco() + "','" + c.getFone() + "','"+c.getEmail() + "')";
 		System.out.println(sql);
 		PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 		preparedStatement.executeUpdate();
@@ -28,7 +28,7 @@ public class ClienteJdbcDAO {
 	}
 	
 	public void alterar(Cliente cExample) {
-		String sql = "update tb_clientes set nome ='" + cExample.getNome()+"','" + cExample.getEndereco() + "','" + cExample.getFone() + "','" + cExample.getEmail() + "')";
+		String sql = "update tb_clientes set nome ='" + cExample.getNome()+"',endereco='" + cExample.getEndereco() + "',fone='" + cExample.getFone() + "',email='" + cExample.getEmail() + "' where id_cliente='" + cExample.getId_cliente() + "';";
 		System.out.println(sql);
 		PreparedStatement preparedStatement;
 		try {
@@ -54,7 +54,7 @@ public class ClienteJdbcDAO {
 			PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()) {
-				int id = rs.getInt("id_clientes");
+				int id = rs.getInt("id_cliente");
 				String nome = rs.getString("nome");
 				String endereco = rs.getString("endereco");
 				String fone = rs.getString("fone");
